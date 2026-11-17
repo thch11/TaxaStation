@@ -21,7 +21,7 @@ namespace TaxaStation
         {
             InitializeComponent();
         }
-        //her er tekst
+
         private void AddDriverButton_Click(object sender, RoutedEventArgs e)
         {
 
