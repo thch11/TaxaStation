@@ -14,14 +14,17 @@ namespace TaxaStation
 {
     public partial class DriverWindow : Window
     {
-        public DriverWindow()
+        TaxiStation s;
+        public DriverWindow(TaxiStation station)
         {
+            s = station;
             InitializeComponent();
+            DriverListBoxDriver.ItemsSource = s.DriverList;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(s);
             mainWindow.Show();
             this.Close();
         }

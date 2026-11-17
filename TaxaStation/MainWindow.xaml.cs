@@ -16,28 +16,30 @@ namespace TaxaStation
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        TaxiStation s;
+        public MainWindow(TaxiStation station)
         {
+            s = station;
             InitializeComponent();
         }
 
         private void Owner_Button_Click(object sender, RoutedEventArgs e)
         {
-            OwnerWindow ownerWindow = new OwnerWindow();
+            OwnerWindow ownerWindow = new OwnerWindow(s);
             ownerWindow.Show();
             this.Close();
         }
 
         private void Customer_Button_Click(object sender, RoutedEventArgs e)
         {
-            CustomerWindow secondWindow = new CustomerWindow();
+            CustomerWindow secondWindow = new CustomerWindow(s);
             secondWindow.Show();
             this.Close();
         }
 
         private void Driver_Button_Click(object sender, RoutedEventArgs e)
         {
-            DriverWindow driverWindow = new DriverWindow();
+            DriverWindow driverWindow = new DriverWindow(s);
             driverWindow.Show();
             this.Close();
         }

@@ -17,19 +17,25 @@ namespace TaxaStation
     /// </summary>
     public partial class OwnerWindow : Window
     {
-        public OwnerWindow()
+        TaxiStation s;
+        public OwnerWindow(TaxiStation station)
         {
+            s = station;
             InitializeComponent();
+            DriverListBoxOwner.ItemsSource = s.DriverList;
         }
 
         private void AddDriverButton_Click(object sender, RoutedEventArgs e)
         {
-
+            s.AddDriver(DriverTextBoxInput.Text, Convert.ToInt32(WorkingHoursStartTextBoxInput.Text), Convert.ToInt32(WorkingHoursEndTextBoxInput.Text));
+            DriverListBoxOwner.ItemsSource = s.DriverList;
+            DriverListBoxOwner.Items.Refresh();
         }
+
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(s);
             mainWindow.Show();
             this.Close();
         }

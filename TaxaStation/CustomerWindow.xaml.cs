@@ -17,9 +17,12 @@ namespace TaxaStation
     /// </summary>
     public partial class CustomerWindow : Window
     {
-        public CustomerWindow()
+        TaxiStation s;
+        public CustomerWindow(TaxiStation station)
         {
+            s = station;
             InitializeComponent();
+            DriverListBoxCustomer.ItemsSource = s.DriverList;
         }
         private void Book_Taxi_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -27,7 +30,7 @@ namespace TaxaStation
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(s);
             mainWindow.Show();
             this.Close();
         }
