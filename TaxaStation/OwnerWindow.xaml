@@ -1,0 +1,24 @@
+﻿<Window x:Class="TaxaStation.OwnerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaxaStation"
+        mc:Ignorable="d"
+        Title="Owner" Height="350" Width="600">
+    <Grid>
+        <Label Content="Welcome" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="45"/>
+        <Label Content="Drivers" HorizontalAlignment="Left" Margin="368,10,0,0" VerticalAlignment="Top" FontSize="45"/>
+        <StackPanel Margin="283,97,0,0" Background="Yellow"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="19,85,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="DriverTextBoxInput" HorizontalAlignment="Left" Margin="19,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Working hours" HorizontalAlignment="Left" Margin="19,149,0,0" VerticalAlignment="Top"/>
+        <Label Content="From:" HorizontalAlignment="Left" Margin="19,180,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="WorkingHoursStartTextBoxInput" HorizontalAlignment="Left" Margin="59,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="51"/>
+        <Label Content="To:" HorizontalAlignment="Left" Margin="116,180,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="WorkingHoursEndTextBoxInput" HorizontalAlignment="Left" Margin="146,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="51"/>
+        <Button x:Name="AddDriverButton" Content="Add Driver" HorizontalAlignment="Left" Margin="19,216,0,0" VerticalAlignment="Top" Width="259" Height="108" FontSize="32" Click="AddDriverButton_Click"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" Height="45" Width="84" Click="BackButton_Click"/>
+
+    </Grid>
+</Window>

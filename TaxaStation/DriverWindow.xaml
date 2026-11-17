@@ -1,0 +1,24 @@
+﻿<Window x:Class="TaxaStation.DriverWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaxaStation"
+        mc:Ignorable="d"
+        Title="Driver" Height="425" Width="500">
+    <Grid>
+        <Label Content="Welcome" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="45"/>
+        <Button Content="Available" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
+        <Button Content="Unavailable" HorizontalAlignment="Left" Margin="119,97,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
+        <Button Content="On break" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
+        <Button Content="Not Working" HorizontalAlignment="Left" Margin="119,213,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
+        <Label Content="Drivers" HorizontalAlignment="Left" Margin="283,10,0,0" VerticalAlignment="Top" FontSize="45"/>
+        <StackPanel Margin="228,97,0,85" Background="Yellow"/>
+        <Label Content="Write name of driver to see their worktime" HorizontalAlignment="Left" Margin="10,329,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="WorkTimeNameTextBox" HorizontalAlignment="Left" Margin="10,369,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
+        <Label x:Name="WorkTimeOutputLabel" Content="" HorizontalAlignment="Left" Margin="261,360,0,0" VerticalAlignment="Top" Width="229"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="204,22,0,0" VerticalAlignment="Top" Height="45" Width="85" Click="BackButton_Click"/>
+
+
+    </Grid>
+</Window>
