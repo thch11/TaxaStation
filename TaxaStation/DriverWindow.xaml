@@ -8,10 +8,10 @@
         Title="Driver" Height="425" Width="500">
     <Grid>
         <Label Content="Welcome" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="45"/>
-        <Button Content="Available" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
-        <Button Content="Unavailable" HorizontalAlignment="Left" Margin="119,97,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
-        <Button Content="On break" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
-        <Button Content="Not Working" HorizontalAlignment="Left" Margin="119,213,0,0" VerticalAlignment="Top" Height="111" Width="104"/>
+        <Button x:Name="AvailableButton" Content="Available" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="AvailableButton_Click"/>
+        <Button x:Name="UnavailableButton" Content="Unavailable" HorizontalAlignment="Left" Margin="119,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="UnavilableButton_Click"/>
+        <Button x:Name="OnBreakButton" Content="On break" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="OnBreakButton_Click"/>
+        <Button x:Name="NotWorkingButton" Content="Not Working" HorizontalAlignment="Left" Margin="119,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="NotWorkingButton_Click"/>
         <Label Content="Drivers" HorizontalAlignment="Left" Margin="283,10,0,0" VerticalAlignment="Top" FontSize="45"/>
         <Label Content="Write name of driver to see their worktime" HorizontalAlignment="Left" Margin="10,329,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="WorkTimeNameTextBox" HorizontalAlignment="Left" Margin="10,369,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
