@@ -22,10 +22,26 @@ namespace TaxaStation
         {
             s = station;
             InitializeComponent();
-            DriverListBoxCustomer.ItemsSource = s.DriverList;
+            List<Driver> AvailableDrivers = new List<Driver>();
+            int i = 0;
+            while(i < s.DriverList.Count)
+            {
+                if (s.DriverList[i].GetAvailability() == "Available")
+                {
+                    AvailableDrivers.Add(s.DriverList[i]);
+                }
+                i++;
+            }
+            DriverListBoxCustomer.ItemsSource = AvailableDrivers;
         }
         private void Book_Taxi_Button_Click(object sender, RoutedEventArgs e)
         {
+            Driver d = (Driver)DriverListBoxCustomer.SelectedItem;
+            d.ChangeAvailability("Unavailable");
+            System.Windows.MessageBox.Show("Tak fordi du bookede en taxi hos MuteMotion", "MuteMotion");
+            MainWindow mainWindow = new MainWindow(s);
+            mainWindow.Show();
+            this.Close();
 
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
