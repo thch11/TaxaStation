@@ -11,12 +11,14 @@
 
   <ItemGroup>
     <None Remove="Images\Background.png" />
+    <None Remove="Images\ProgramBackground.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\ProgramBackground.png" />
   </ItemGroup>
 
 </Project>
