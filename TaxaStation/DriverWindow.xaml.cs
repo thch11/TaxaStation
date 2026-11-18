@@ -28,5 +28,33 @@ namespace TaxaStation
             mainWindow.Show();
             this.Close();
         }
+
+        private void UnavilableButton_Click(object sender, RoutedEventArgs e)
+        {
+            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+            d.ChangeAvailability("Unavailable");
+            DriverListBoxDriver.Items.Refresh();
+        }
+
+        private void AvailableButton_Click(object sender, RoutedEventArgs e)
+        {
+            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+            d.ChangeAvailability("Available");
+            DriverListBoxDriver.Items.Refresh();
+        }
+
+        private void OnBreakButton_Click(object sender, RoutedEventArgs e)
+        {
+            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+            d.ChangeAvailability("On break");
+            DriverListBoxDriver.Items.Refresh();
+        }
+
+        private void NotWorkingButton_Click(object sender, RoutedEventArgs e)
+        {
+            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+            d.ChangeAvailability("Not working");
+            DriverListBoxDriver.Items.Refresh();
+        }
     }
 }

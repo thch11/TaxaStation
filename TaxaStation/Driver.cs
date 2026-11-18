@@ -20,7 +20,13 @@ namespace TaxaStation
         }
         public override string ToString()
         {
-            return Name + " " + " | "+  Availability + " | " + WorkStart +  " - " + WorkEnd;
+            return Name + " " + " | " + Availability + " | " + WorkStart + " - " + WorkEnd;
         }
+
+        public void ChangeAvailability(string a)
+        {
+            this.Availability = a;
+        }
+       
     }
 }
