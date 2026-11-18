@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,6 +22,7 @@ namespace TaxaStation
             s = station;
             InitializeComponent();
             DriverListBoxDriver.ItemsSource = s.DriverList;
+            this.Closed += new EventHandler(DriverWindow_Closed);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -55,6 +58,12 @@ namespace TaxaStation
             Driver d = (Driver)DriverListBoxDriver.SelectedItem;
             d.ChangeAvailability("Not working");
             DriverListBoxDriver.Items.Refresh();
+        }
+        void DriverWindow_Closed(object? sender, EventArgs e)
+        {
+            string filepath = "JSON/Save.json";
+            string json = JsonSerializer.Serialize(s.DriverList);
+            System.IO.File.WriteAllText(filepath, json);
         }
     }
 }

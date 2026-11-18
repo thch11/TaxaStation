@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace TaxaStation
 {
     public class Driver
     {
-        private string Name;
-        private int WorkStart;
-        private int WorkEnd;
-
-        private string Availability = "Available";
+        [JsonInclude]
+        private string Name { get; set; }
+        [JsonInclude]
+        private int WorkStart { get; set; }
+        [JsonInclude]
+        private int WorkEnd { get; set; }
+        [JsonInclude]
+        private string Availability { get; set; } = "Available";
 
         public Driver(string name, int workstart, int workend)
         {
