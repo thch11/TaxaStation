@@ -17,7 +17,11 @@ namespace TaxaStation
             TaxiStation masterStation = new TaxiStation();
 
             string filepath = "JSON/Save.json";
-            masterStation.DriverList = JsonSerializer.Deserialize<List<Driver>>(System.IO.File.ReadAllText(filepath))!;
+            try
+            {
+                masterStation.DriverList = JsonSerializer.Deserialize<List<Driver>>(System.IO.File.ReadAllText(filepath));
+            }
+            catch (Exception ex) { }
 
             MainWindow mainWindow = new MainWindow(masterStation);
             mainWindow.Show();
