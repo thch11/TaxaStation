@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +23,7 @@ namespace TaxaStation
         {
             s = station;
             InitializeComponent();
+            this.Closed += new EventHandler(MainWindow_Closed);
         }
 
         private void Owner_Button_Click(object sender, RoutedEventArgs e)
@@ -43,5 +46,12 @@ namespace TaxaStation
             driverWindow.Show();
             this.Close();
         }
+        void MainWindow_Closed(object? sender, EventArgs e)
+        {
+            string filepath = "JSON/Save.json";
+            string json = JsonSerializer.Serialize(s.DriverList);
+            System.IO.File.WriteAllText(filepath, json);
+        }
+
     }
 }

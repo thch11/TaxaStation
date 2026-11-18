@@ -14,7 +14,7 @@
         <Button x:Name="NotWorkingButton" Content="Not Working" HorizontalAlignment="Left" Margin="119,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="NotWorkingButton_Click"/>
         <Label Content="Drivers" HorizontalAlignment="Left" Margin="283,10,0,0" VerticalAlignment="Top" FontSize="45"/>
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="204,22,0,0" VerticalAlignment="Top" Height="45" Width="85" Click="BackButton_Click"/>
-        <ListBox x:Name="DriverListBoxDriver" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="228,97,0,85"/>
+        <ListBox x:Name="DriverListBoxDriver" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="228,97,0,10"/>
 
 
     </Grid>

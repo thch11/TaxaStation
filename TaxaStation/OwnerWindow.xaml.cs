@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.Json;
+using System.IO;
 
 namespace TaxaStation
 {
@@ -23,6 +25,7 @@ namespace TaxaStation
             s = station;
             InitializeComponent();
             DriverListBoxOwner.ItemsSource = s.DriverList;
+            this.Closed += new EventHandler(OwnerWindow_Closed);
         }
 
         private void AddDriverButton_Click(object sender, RoutedEventArgs e)
@@ -38,6 +41,12 @@ namespace TaxaStation
             MainWindow mainWindow = new MainWindow(s);
             mainWindow.Show();
             this.Close();
+        }
+        void OwnerWindow_Closed(object? sender, EventArgs e)
+        {
+            string filepath = "JSON/Save.json";
+            string json = JsonSerializer.Serialize(s.DriverList);
+            System.IO.File.WriteAllText(filepath, json);
         }
     }
 }

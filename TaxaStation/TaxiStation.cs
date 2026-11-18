@@ -6,7 +6,7 @@ namespace TaxaStation
 {
     public class TaxiStation
     {
-        public List<Driver> DriverList = new List<Driver>();
+        public List<Driver> DriverList { get; set; } = new List<Driver>();
 
         public Driver AddDriver(string name, int workstart, int workend)
         {

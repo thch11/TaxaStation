@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -33,6 +35,7 @@ namespace TaxaStation
                 i++;
             }
             DriverListBoxCustomer.ItemsSource = AvailableDrivers;
+            this.Closed += new EventHandler(CustomerWindow_Closed);
         }
         private void Book_Taxi_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -49,6 +52,12 @@ namespace TaxaStation
             MainWindow mainWindow = new MainWindow(s);
             mainWindow.Show();
             this.Close();
+        }
+        void CustomerWindow_Closed(object? sender, EventArgs e)
+        {
+            string filepath = "JSON/Save.json";
+            string json = JsonSerializer.Serialize(s.DriverList);
+            System.IO.File.WriteAllText(filepath, json);
         }
     }
 }
