@@ -27,6 +27,11 @@ namespace TaxaStation
         {
             this.Availability = a;
         }
-       
+
+        public string GetAvailability()
+        {
+            return this.Availability;
+        }
+
     }
 }
