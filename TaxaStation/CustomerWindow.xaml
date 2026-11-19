@@ -24,7 +24,7 @@
         Width="177" 
         Click="Book_Taxi_Button_Click" 
         Grid.Column="1" 
-        Background="ForestGreen">
+        Background="Transparent">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="30" />
