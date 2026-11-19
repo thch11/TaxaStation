@@ -34,30 +34,58 @@ namespace TaxaStation
 
         private void UnavilableButton_Click(object sender, RoutedEventArgs e)
         {
-            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
-            d.ChangeAvailability("Unavailable");
-            DriverListBoxDriver.Items.Refresh();
+            if (DriverListBoxDriver.SelectedItem != null)
+            {
+                Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+                d.ChangeAvailability("Unavailable");
+                DriverListBoxDriver.Items.Refresh();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Please select a driver from the driver list!", "MuteMotion");
+            }
         }
 
         private void AvailableButton_Click(object sender, RoutedEventArgs e)
         {
-            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
-            d.ChangeAvailability("Available");
-            DriverListBoxDriver.Items.Refresh();
+            if (DriverListBoxDriver.SelectedItem != null)
+            {
+                Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+                d.ChangeAvailability("Available");
+                DriverListBoxDriver.Items.Refresh();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Please select a driver from the driver list!", "MuteMotion");
+            }
         }
 
         private void OnBreakButton_Click(object sender, RoutedEventArgs e)
         {
-            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
-            d.ChangeAvailability("On break");
-            DriverListBoxDriver.Items.Refresh();
+            if (DriverListBoxDriver.SelectedItem != null)
+            {
+                Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+                d.ChangeAvailability("On break");
+                DriverListBoxDriver.Items.Refresh();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Please select a driver from the driver list!", "MuteMotion");
+            }
         }
 
         private void NotWorkingButton_Click(object sender, RoutedEventArgs e)
         {
-            Driver d = (Driver)DriverListBoxDriver.SelectedItem;
-            d.ChangeAvailability("Not working");
-            DriverListBoxDriver.Items.Refresh();
+            if (DriverListBoxDriver.SelectedItem != null)
+            {
+                Driver d = (Driver)DriverListBoxDriver.SelectedItem;
+                d.ChangeAvailability("Not working");
+                DriverListBoxDriver.Items.Refresh();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Please select a driver from the driver list!", "MuteMotion");
+            }
         }
         void DriverWindow_Closed(object? sender, EventArgs e)
         {

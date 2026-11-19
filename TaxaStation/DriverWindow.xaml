@@ -11,10 +11,10 @@
             <ImageBrush ImageSource="Images/ProgramBackground.png" Stretch="Fill"/>
         </Grid.Background>
         <Label Content="Welcome driver" HorizontalAlignment="Left" Margin="20,49,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <Button x:Name="AvailableButton" Content="Available" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="AvailableButton_Click" Background="Green"/>
-        <Button x:Name="UnavailableButton" Content="Unavailable" HorizontalAlignment="Left" Margin="119,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="UnavilableButton_Click" Background="Red"/>
-        <Button x:Name="OnBreakButton" Content="On break" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="OnBreakButton_Click" Background="GhostWhite"/>
-        <Button x:Name="NotWorkingButton" Content="Not Working" HorizontalAlignment="Left" Margin="119,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="NotWorkingButton_Click" Background="GhostWhite"></Button>
+        <Button x:Name="AvailableButton" FontSize="17" Content="Available" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="AvailableButton_Click" Background="Green"/>
+        <Button x:Name="UnavailableButton" FontSize ="17" Content="Unavailable" HorizontalAlignment="Left" Margin="119,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="UnavilableButton_Click" Background="Red"/>
+        <Button x:Name="OnBreakButton" FontSize="17" Content="On break" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="OnBreakButton_Click" Background="GhostWhite"/>
+        <Button x:Name="NotWorkingButton" FontSize="17" Content="Not Working" HorizontalAlignment="Left" Margin="119,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="NotWorkingButton_Click" Background="GhostWhite"></Button>
         <Label Content="List of drivers" HorizontalAlignment="Left" Margin="300,49,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="BackButton" 
         HorizontalAlignment="Left" 

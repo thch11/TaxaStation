@@ -5,17 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxaStation"
         mc:Ignorable="d"
-        Title="Customer" Height="275" Width="400">
+        Title="Customer" Height="275" Width="450">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/ProgramBackground.png" Stretch="Fill"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="199*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="BookTaxiButton" Content="Book Taxi" HorizontalAlignment="Left" Margin="9,63,0,0" VerticalAlignment="Top" Height="78" Width="177" Click="Book_Taxi_Button_Click" Grid.Column="1"/>
-        <Label Content="Welcome Customer" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" FontSize="21" Grid.Column="1"/>
-        <Label Content="Drivers:" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" FontSize="21" Grid.Column="1"/>
-        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Height="78" Width="178" VerticalAlignment="Top" Click="BackButton_Click" Margin="8,146,0,0" Grid.Column="1" />
-        <ListBox x:Name="DriverListBoxCustomer" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Margin="199,63,0,0"/>
+        <Button x:Name="BookTaxiButton" 
+        FontSize="30"
+        Content="Book Taxi" 
+        HorizontalAlignment="Left" 
+        Margin="8,115,0,0" 
+        VerticalAlignment="Top" 
+        Height="78" 
+        Width="177" 
+        Click="Book_Taxi_Button_Click" 
+        Grid.Column="1" 
+        Background="ForestGreen">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="30" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Label Content="Welcome Customer" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" FontSize="21" Grid.Column="1"/>
+        <Label Content="List of available drivers:" HorizontalAlignment="Left" Margin="205,15,0,0" VerticalAlignment="Top" FontSize="21" Grid.Column="1"/>
+        <Button x:Name="BackButton" 
+  HorizontalAlignment="Left" 
+  VerticalAlignment="Top" 
+  Height="67" 
+  Width="200" 
+  Click="BackButton_Click"
+  Background="Transparent"
+  Panel.ZIndex="99"
+  BorderThickness="0"
+  Cursor="Hand" Grid.Column="1">
+            <Image Source="/Images/Background4.png" Height="42" Width="237" />
+        </Button>
+        <ListBox x:Name="DriverListBoxCustomer" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Margin="199,63,0,0" Background="Transparent"/>
 
 
 

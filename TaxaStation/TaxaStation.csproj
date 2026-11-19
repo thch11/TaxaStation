@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <None Remove="Images\Background.png" />
+    <None Remove="Images\Background3.png" />
+    <None Remove="Images\Background4.png" />
     <None Remove="Images\ProgramBackground.png" />
   </ItemGroup>
 
@@ -18,6 +20,12 @@
     <Resource Include="Images\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\Background3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Images\Background4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\ProgramBackground.png" />
   </ItemGroup>
 
