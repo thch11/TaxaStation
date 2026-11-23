@@ -37,5 +37,10 @@ namespace TaxaStation
             return this.Availability;
         }
 
+        public string GetName()
+        {
+            return this.Name;
+        }
+
     }
 }

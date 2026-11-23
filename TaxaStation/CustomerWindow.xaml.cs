@@ -20,8 +20,11 @@ namespace TaxaStation
     public partial class CustomerWindow : Window
     {
         TaxiStation s;
-        public CustomerWindow(TaxiStation station)
+
+        List<User> userList;
+        public CustomerWindow(TaxiStation station, List<User> uList)
         {
+            userList = uList;
             s = station;
             InitializeComponent();
             List<Driver> AvailableDrivers = new List<Driver>();
@@ -44,7 +47,7 @@ namespace TaxaStation
                 Driver d = (Driver)DriverListBoxCustomer.SelectedItem;
                 d.ChangeAvailability("Unavailable");
                 System.Windows.MessageBox.Show("Thank you for booking a taxi with MuteMotion", "MuteMotion");
-                MainWindow mainWindow = new MainWindow(s);
+                MainWindow mainWindow = new MainWindow(s, userList);
                 mainWindow.Show();
                 this.Close();
             }
@@ -56,14 +59,19 @@ namespace TaxaStation
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(s);
+            MainWindow mainWindow = new MainWindow(s, userList);
             mainWindow.Show();
             this.Close();
         }
         void CustomerWindow_Closed(object? sender, EventArgs e)
         {
-            string filepath = "JSON/Save.json";
-            string json = JsonSerializer.Serialize(s.DriverList);
+            string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
+            string folderPath = System.IO.Path.Combine(projectDirectory, "JSON");
+
+            Directory.CreateDirectory(folderPath);
+
+            string filepath = System.IO.Path.Combine(folderPath, "Save.json");
+            string json = JsonSerializer.Serialize(s.DriverList, new JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText(filepath, json);
         }
     }

@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Gurli Hansen",
+    "WorkStart": 10,
+    "WorkEnd": 21,
+    "Availability": "Available"
+  },
+  {
+    "Name": "Lars Larsen",
+    "WorkStart": 5,
+    "WorkEnd": 17,
+    "Availability": "On Break"
+  },
+  {
+    "Name": "Kim Larsen",
+    "WorkStart": 4,
+    "WorkEnd": 16,
+    "Availability": "Available"
+  }
+]

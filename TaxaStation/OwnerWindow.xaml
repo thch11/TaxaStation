@@ -11,14 +11,15 @@
             <ImageBrush ImageSource="Images/ProgramBackground.png" Stretch="Fill"/>
         </Grid.Background>
         <Label Content="List of all drivers:" HorizontalAlignment="Left" Margin="213,19,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="19,80,0,0" VerticalAlignment="Top" Width="65"/>
-        <TextBox x:Name="DriverTextBoxInput" HorizontalAlignment="Left" Margin="19,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" MaxLength="34" Background="Transparent"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="19,53,0,0" VerticalAlignment="Top" Width="65"/>
+        <TextBox x:Name="DriverTextBoxInput" HorizontalAlignment="Left" Margin="19,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" MaxLength="34" Background="Transparent"/>
+        <TextBox x:Name="DriverTextBoxInputPassword" HorizontalAlignment="Left" Margin="19,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" MaxLength="34" Background="Transparent"/>
         <Label Content="Working hours" HorizontalAlignment="Left" Margin="19,149,0,0" VerticalAlignment="Top"/>
         <Label Content="From:" HorizontalAlignment="Left" Margin="19,180,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="WorkingHoursStartTextBoxInput" HorizontalAlignment="Left" Margin="59,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="51" MaxLength="2" Background="Transparent"/>
         <Label Content="To:" HorizontalAlignment="Left" Margin="116,180,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="WorkingHoursEndTextBoxInput" HorizontalAlignment="Left" Margin="146,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="51" MaxLength="2" Background="Transparent"/>
-        <Button x:Name="AddDriverButton" Content="Add Driver" HorizontalAlignment="Left" Margin="19,216,0,0" VerticalAlignment="Top" Width="181" Height="79" FontSize="32" Click="AddDriverButton_Click" Background="Transparent"/>
+        <Button x:Name="AddDriverButton" Content="Add Driver" HorizontalAlignment="Left" Margin="19,216,0,0" VerticalAlignment="Top" Width="178" Height="42" FontSize="25" Click="AddDriverButton_Click" Background="Transparent"/>
         <Button x:Name="BackButton" 
   HorizontalAlignment="Left" 
   VerticalAlignment="Top" 
@@ -32,6 +33,9 @@
             <Image Source="/Images/Background4.png" Height="42" Width="237" />
         </Button>
         <ListBox x:Name="DriverListBoxOwner" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="205,81,0,10" Background="Transparent"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="19,99,0,0" VerticalAlignment="Top" Width="65"/>
+        <Button x:Name="RemoveDriverButton" Content="Remove Driver" HorizontalAlignment="Left" Margin="19,263,0,0" VerticalAlignment="Top" Width="178" Height="42" FontSize="25" Click="Remove_Driver_Button_Click" Background="Transparent"/>
+
 
     </Grid>
 </Window>

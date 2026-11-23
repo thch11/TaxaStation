@@ -10,25 +10,22 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images/Background.png" Stretch="Fill"/>
         </Grid.Background>
-        <Button x:Name="CustomerButton" FontSize="18" Background="White" Content="Customer" HorizontalAlignment="Left" Margin="122,215,0,0" VerticalAlignment="Top" Height="78" Width="90" Click="Customer_Button_Click">
+        <Button x:Name="CustomerButton" FontSize="18" Background="White" Content="Customer" HorizontalAlignment="Left" Margin="122,167,0,0" VerticalAlignment="Top" Height="126" Width="347" Click="Customer_Button_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="DriverButton" FontSize ="18" Background="White" Content="Driver" HorizontalAlignment="Center" VerticalAlignment="Top" Height="78" Width="90" Click="Driver_Button_Click" Margin="0,215,0,0" >
+        <Label Content="Username: " HorizontalAlignment="Left" Margin="529,113,0,0" VerticalAlignment="Top" Width="117" Height="54" Foreground="White" FontSize="22"/>
+        <TextBox x:Name="TextBoxUsername" HorizontalAlignment="Left" Margin="529,167,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="144" Background="Transparent" Height="26" Foreground="White"/>
+        <Label Content="Password: " HorizontalAlignment="Left" Margin="529,193,0,0" VerticalAlignment="Top" Width="117" Height="54" Foreground="White" FontSize="22"/>
+        <TextBox x:Name="TextBoxPassword" HorizontalAlignment="Left" Margin="529,247,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="144" Background="Transparent" Height="26" Foreground="White"/>
+        <Button x:Name="LoginButton" FontSize="18" Background="White" Content="Login" HorizontalAlignment="Left" Margin="678,191,0,0" VerticalAlignment="Top" Height="58" Width="101" Click="Login_Button_Click">
             <Button.Resources>
-                <Style TargetType="Border">
+                <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="OwnerButton" FontSize="18" Background="White" Content= "Owner" HorizontalAlignment="Left" VerticalAlignment="Top" Height="78" Width="90" Margin="572,215,0,0" Click="Owner_Button_Click" >
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="20"/>
-            </Style>
             </Button.Resources>
         </Button>
 

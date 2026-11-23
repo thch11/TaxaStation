@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Admin",
+    "Password": "Admin",
+    "OwnerAccount": true
+  },
+  {
+    "Name": "Gurli Hansen",
+    "Password": "jesperhus",
+    "OwnerAccount": false
+  },
+  {
+    "Name": "Lars Larsen",
+    "Password": "godttilbud",
+    "OwnerAccount": false
+  },
+  {
+    "Name": "Kim Larsen",
+    "Password": "kvindemin",
+    "OwnerAccount": false
+  }
+]
