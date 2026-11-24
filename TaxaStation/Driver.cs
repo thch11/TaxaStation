@@ -8,11 +8,11 @@ namespace TaxaStation
     public class Driver
     {
         [JsonInclude]
-        private string Name { get; set; }
+        public string Name { get; private set; }
         [JsonInclude]
-        private int WorkStart { get; set; }
+        public int WorkStart { get; private set; }
         [JsonInclude]
-        private int WorkEnd { get; set; }
+        public int WorkEnd { get; private set; }
         [JsonInclude]
         private string Availability { get; set; } = "Available";
         [JsonInclude]

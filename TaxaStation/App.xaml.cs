@@ -19,25 +19,10 @@ namespace TaxaStation
             TaxiStation masterStation = new TaxiStation();
 
             string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-            string folderPath = Path.Combine(projectDirectory, "Login");
-            string filepath = Path.Combine(folderPath, "Login.json");
+            string folderPath = Path.Combine(projectDirectory, "JSON");
+            string filepath = Path.Combine(folderPath, "Save.json");
             
-            masterStation.userList = JsonSerializer.Deserialize<List<User>>(System.IO.File.ReadAllText(filepath));
-
-            folderPath = Path.Combine(projectDirectory, "JSON");
-            filepath = Path.Combine(folderPath, "Save.json");
-
-            masterStation.DriverList = JsonSerializer.Deserialize<List<Driver>>(System.IO.File.ReadAllText(filepath));
-
-            HashSet<Car> CarCollection = new HashSet<Car>();
-            int i = 0; 
-            while(i < masterStation.DriverList.Count)
-            {
-                CarCollection.Add(masterStation.DriverList[i].driversCar);
-                i++;
-            }
-
-            masterStation.carList = CarCollection.DistinctBy(c => c.LicensePlate).ToList();
+            masterStation = JsonSerializer.Deserialize<TaxiStation>(System.IO.File.ReadAllText(filepath));
 
             MainWindow mainWindow = new MainWindow(masterStation);
             mainWindow.Show();

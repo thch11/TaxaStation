@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images/ProgramBackground.png" Stretch="Fill"/>
         </Grid.Background>
-        <Label Content="List of all drivers:" HorizontalAlignment="Left" Margin="366,23,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Label Content="List of all cars:" HorizontalAlignment="Left" Margin="366,44,0,0" VerticalAlignment="Top" FontSize="25"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="19,53,0,0" VerticalAlignment="Top" Width="65"/>
         <TextBox x:Name="DriverTextBoxInput" HorizontalAlignment="Left" Margin="19,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153" MaxLength="34" Background="Transparent"/>
         <TextBox x:Name="DriverTextBoxInputPassword" HorizontalAlignment="Left" Margin="19,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153" MaxLength="34" Background="Transparent"/>
@@ -32,7 +32,7 @@
   Cursor="Hand" Margin="0,-5,0,0">
             <Image Source="/Images/Background4.png" Height="42" Width="237" />
         </Button>
-        <ListBox x:Name="DriverListBoxOwner" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="366,81,0,10" Background="Transparent"/>
+        <ListBox x:Name="DriverListBoxOwner" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="366,90,0,10" Background="Transparent"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="19,99,0,0" VerticalAlignment="Top" Width="65"/>
         <Button x:Name="RemoveDriverButton" Content="Remove Driver" HorizontalAlignment="Left" Margin="19,299,0,0" VerticalAlignment="Top" Width="153" Height="42" FontSize="22" Click="Remove_Driver_Button_Click" Background="Transparent"/>
         <ComboBox x:Name="CarComboBox" HorizontalAlignment="Left" Margin="21,225,0,0" VerticalAlignment="Top" Width="151" Background="Transparent"/>
@@ -44,6 +44,7 @@
         <Label Content="Car brand:" HorizontalAlignment="Left" Margin="201,66,0,0" VerticalAlignment="Top" Width="65"/>
         <Label Content="License Plate:" HorizontalAlignment="Left" Margin="201,131,0,0" VerticalAlignment="Top" Width="98"/>
         <Label Content="KM Driven: " HorizontalAlignment="Left" Margin="201,188,0,0" VerticalAlignment="Top" Width="69"/>
+        <Label x:Name="myClockLabel" Content="" HorizontalAlignment="Left" Margin="470,7,0,0" VerticalAlignment="Top" Width="100"  FontSize="20"/>
 
 
     </Grid>
