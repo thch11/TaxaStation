@@ -71,7 +71,7 @@ namespace TaxaStation
                     }
                     else
                     {
-                        System.Windows.MessageBox.Show("Invalid shift or car is already booked for those hours (must be 0-8, 8-16, or 16-24).", "MuteMotion");
+                        System.Windows.MessageBox.Show("Invalid shift (must be 0-8, 8-16, or 16-24).", "MuteMotion");
                     }
                 }
                 else

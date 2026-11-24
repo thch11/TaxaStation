@@ -90,9 +90,12 @@ namespace TaxaStation
 
         public void UnbookShift(int startHour, int endHour)
         {
-            if (startHour == 0 && endHour == 8) MidnightToEight = false;
-            else if (startHour == 8 && endHour == 16) EightToSixteen = false;
-            else if (startHour == 16 && endHour == 24) SixteenToMidnight = false;
+            if (startHour == 0 && endHour == 8) 
+                MidnightToEight = false;
+            else if (startHour == 8 && endHour == 16) 
+                EightToSixteen = false;
+            else if (startHour == 16 && endHour == 24) 
+                SixteenToMidnight = false;
         }
 
     }
