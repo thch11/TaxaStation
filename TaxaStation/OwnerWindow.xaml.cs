@@ -119,8 +119,13 @@ namespace TaxaStation
 
         private void AddCarButton_Click(object sender, RoutedEventArgs e)
         {
-            s.AddCar(CarTextBoxCarBrand.Text, CarTextBoxLicensePlate.Text, Convert.ToInt32(CarTextBoxKMDriven.Text));
-            RefreshUI();
+            if (CarTextBoxCarBrand.Text != "" && CarTextBoxLicensePlate.Text != "" && CarTextBoxKMDriven.Text != "")
+            {
+                s.AddCar(CarTextBoxCarBrand.Text, CarTextBoxLicensePlate.Text, Convert.ToInt32(CarTextBoxKMDriven.Text));
+                RefreshUI();
+            }
+            else
+                System.Windows.MessageBox.Show("No empty fields allowed when adding a car", "MuteMotion");
         }
     }
 }

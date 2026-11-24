@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TaxaStation
 {
@@ -21,14 +22,30 @@ namespace TaxaStation
         User currentUser;
 
         Driver currentDriver;
+        private DispatcherTimer _timer;
+
         public DriverWindow(TaxiStation station, User loginUser)
         {
             s = station;
             currentUser = loginUser;
             currentDriver = s.FindDriver(currentUser);
             InitializeComponent();
-            DriverListBoxDriver.ItemsSource = s.DriverList;
+            NameLabel.Content = "Welcome " + currentDriver.Name;
+            WorkHoursLabel.Content = "From: " + currentDriver.WorkStart + " to: " + currentDriver.WorkEnd;
+            DriversCarLabel.Content =  currentDriver.driversCar.CarBrand + " " + currentDriver.driversCar.LicensePlate;
+            ActiveTimeLabel.Content = "Minutes: " + currentDriver.WorkTime;
             this.Closed += new EventHandler(DriverWindow_Closed);
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1),
+            };
+
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            myClockLabel.Content = DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -42,28 +59,24 @@ namespace TaxaStation
         {
             s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Unavailable");
             currentDriver.ChangeAvailability("Unavailable");
-            DriverListBoxDriver.Items.Refresh();
         }
 
         private void AvailableButton_Click(object sender, RoutedEventArgs e)
         {
             s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Available");
             currentDriver.ChangeAvailability("Available");
-            DriverListBoxDriver.Items.Refresh();
         }
 
         private void OnBreakButton_Click(object sender, RoutedEventArgs e)
         {
             s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "On Break");
             currentDriver.ChangeAvailability("On Break");
-            DriverListBoxDriver.Items.Refresh();
         }
 
         private void NotWorkingButton_Click(object sender, RoutedEventArgs e)
         {
             s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Not Working");
             currentDriver.ChangeAvailability("Not Working");
-            DriverListBoxDriver.Items.Refresh();
         }
         void DriverWindow_Closed(object? sender, EventArgs e)
         {

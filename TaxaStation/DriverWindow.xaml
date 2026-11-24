@@ -10,12 +10,12 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images/ProgramBackground.png" Stretch="Fill"/>
         </Grid.Background>
-        <Label Content="Welcome driver" HorizontalAlignment="Left" Margin="20,49,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Label x:Name="NameLabel" Content="Welcome driver" HorizontalAlignment="Left" Margin="20,49,0,0" VerticalAlignment="Top" FontSize="25"/>
         <Button x:Name="AvailableButton" FontSize="17" Content="Available" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="AvailableButton_Click" Background="Green"/>
         <Button x:Name="UnavailableButton" FontSize ="17" Content="Unavailable" HorizontalAlignment="Left" Margin="119,97,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="UnavilableButton_Click" Background="Red"/>
         <Button x:Name="OnBreakButton" FontSize="17" Content="On break" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="OnBreakButton_Click" Background="Transparent"/>
         <Button x:Name="NotWorkingButton" FontSize="17" Content="Not Working" HorizontalAlignment="Left" Margin="119,213,0,0" VerticalAlignment="Top" Height="111" Width="104" Click="NotWorkingButton_Click" Background="Transparent"></Button>
-        <Label Content="List of drivers" HorizontalAlignment="Left" Margin="300,49,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Your work hours: " HorizontalAlignment="Left" Margin="294,49,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="BackButton" 
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" 
@@ -28,7 +28,12 @@
         Cursor="Hand">
             <Image Source="/Images/Background4.png" Height="42" Width="237" />
         </Button>
-        <ListBox x:Name="DriverListBoxDriver" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="228,97,0,10" Background="Transparent"/>
+        <Label x:Name="myClockLabel" Content="" HorizontalAlignment="Left" Margin="390,7,0,0" VerticalAlignment="Top" Width="100"  FontSize="20"/>
+        <Label x:Name="WorkHoursLabel" Content="" HorizontalAlignment="Left" Margin="294,91,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="You are driving in: " HorizontalAlignment="Left" Margin="294,128,0,0" VerticalAlignment="Top" FontSize="20" Width="196"/>
+        <Label x:Name="DriversCarLabel" Content="" HorizontalAlignment="Left" Margin="294,170,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Active driving time: " HorizontalAlignment="Left" Margin="294,207,0,0" VerticalAlignment="Top" FontSize="20" Width="196"/>
+        <Label x:Name="ActiveTimeLabel" Content="" HorizontalAlignment="Left" Margin="294,249,0,0" VerticalAlignment="Top" FontSize="20"/>
 
 
     </Grid>
