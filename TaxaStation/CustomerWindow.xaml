@@ -32,7 +32,7 @@
             </Button.Resources>
         </Button>
         <Label Content="Welcome Customer" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" FontSize="21" Grid.Column="1"/>
-        <Label Content="List of available drivers:" HorizontalAlignment="Left" Margin="205,15,0,0" VerticalAlignment="Top" FontSize="21" Grid.Column="1"/>
+        <Label Content="List of available drivers:" HorizontalAlignment="Left" Margin="205,29,0,0" VerticalAlignment="Top" FontSize="21" Grid.Column="1"/>
         <Button x:Name="BackButton" 
   HorizontalAlignment="Left" 
   VerticalAlignment="Top" 
@@ -45,7 +45,8 @@
   Cursor="Hand" Grid.Column="1">
             <Image Source="/Images/Background4.png" Height="42" Width="237" />
         </Button>
-        <ListBox x:Name="DriverListBoxCustomer" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Margin="199,63,0,0" Background="Transparent"/>
+        <ListBox x:Name="DriverListBoxCustomer" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Margin="205,72,0,0" Background="Transparent"/>
+        <Label x:Name="myClockLabel" Content="" HorizontalAlignment="Left" Margin="338,0,0,0" VerticalAlignment="Top" Width="100"  FontSize="20" Grid.Column="1"/>
 
 
 

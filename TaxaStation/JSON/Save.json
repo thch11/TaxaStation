@@ -1,32 +1,38 @@
 [
   {
-    "Name": "Gurli Hansen",
-    "WorkStart": 10,
-    "WorkEnd": 21,
-    "Availability": "Not Working"
+    "Name": "Kim Larsen",
+    "WorkStart": 0,
+    "WorkEnd": 8,
+    "Availability": "On Break",
+    "driversCar": {
+      "CarBrand": "Toyota",
+      "LicensePlate": "AB12345",
+      "KMdriven": 123671
+    },
+    "WorkTime": 0
   },
   {
     "Name": "Lars Larsen",
-    "WorkStart": 5,
-    "WorkEnd": 17,
-    "Availability": "Available"
-  },
-  {
-    "Name": "Kim Larsen",
-    "WorkStart": 4,
+    "WorkStart": 8,
     "WorkEnd": 16,
-    "Availability": "Unavailable"
+    "Availability": "Not Working",
+    "driversCar": {
+      "CarBrand": "Toyota",
+      "LicensePlate": "AB12345",
+      "KMdriven": 123671
+    },
+    "WorkTime": 0
   },
   {
-    "Name": "Jesper Larsen",
-    "WorkStart": 15,
-    "WorkEnd": 23,
-    "Availability": "Available"
-  },
-  {
-    "Name": "Spiderman",
+    "Name": "Henrik Mortensen",
     "WorkStart": 0,
-    "WorkEnd": 24,
-    "Availability": "Unavailable"
+    "WorkEnd": 8,
+    "Availability": "Unavailable",
+    "driversCar": {
+      "CarBrand": "Suzuki",
+      "LicensePlate": "BC23456",
+      "KMdriven": 87211
+    },
+    "WorkTime": 0
   }
 ]

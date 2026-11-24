@@ -12,21 +12,37 @@ namespace TaxaStation
 
         public List<User> userList { get; set; } = new List<User>();
 
-        public Driver AddDriver(string name, int workstart, int workend)
+        public List<Car> carList { get; set; } = new List<Car>();
+
+        public Car AddCar(string brand, string licenseplate, int KMdriven)
         {
-           Driver driver = AddDriverToList(CreateDriver(name, workstart, workend));
+            Car car = AddCarToList(CreateCar(brand, licenseplate, KMdriven));
+            return car;
+        }
+        private Car CreateCar(string brand, string licenseplate, int KMdriven)
+        {
+            Car car = new Car(brand, licenseplate, KMdriven);
+            return car;
+        }
+        private Car AddCarToList(Car car)
+        {
+            carList.Add(car);
+            return car;
+        }
+        public Driver AddDriver(string name, int workstart, int workend, Car car)
+        {
+           Driver driver = AddDriverToList(CreateDriver(name, workstart, workend, car));
            return driver;
         }
-        private Driver CreateDriver(string name, int workstart, int workend)
+        private Driver CreateDriver(string name, int workstart, int workend, Car car)
         {
-            Driver driver = new Driver(name, workstart, workend);
+            Driver driver = new Driver(name, workstart, workend, car);
             return driver;
         }
         private Driver AddDriverToList(Driver driver)
         {
             DriverList.Add(driver);
             return driver;
-
         }
         public User AddUser(string name, string password)
         {
@@ -109,6 +125,18 @@ namespace TaxaStation
             }
             DriverList.Remove(selectedDriver);
             userList.Remove(selectedUser);
+        }
+
+        public void LogTime(string time, string name, string action)
+        {
+            string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
+            string folderPath = System.IO.Path.Combine(projectDirectory, "LogFiles");
+
+            Directory.CreateDirectory(folderPath);
+
+            string filepath = System.IO.Path.Combine(folderPath, "Log.txt");
+            string logString = name + " " + time + " " + action + Environment.NewLine; 
+            System.IO.File.AppendAllText(filepath, logString);
         }
     }
 }
