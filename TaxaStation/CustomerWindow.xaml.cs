@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TaxaStation
 {
@@ -21,6 +22,8 @@ namespace TaxaStation
     {
         TaxiStation s;
 
+        private DispatcherTimer _timer;
+
         public CustomerWindow(TaxiStation station)
         {
             s = station;
@@ -28,12 +31,26 @@ namespace TaxaStation
             List<Driver> AvailableDrivers = s.FindAvailableDrivers();
             DriverListBoxCustomer.ItemsSource = AvailableDrivers;
             this.Closed += new EventHandler(CustomerWindow_Closed);
+
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1),
+            };
+
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            myClockLabel.Content = DateTime.Now.ToString("HH:mm:ss");
         }
         private void Book_Taxi_Button_Click(object sender, RoutedEventArgs e)
         {
             if (DriverListBoxCustomer.SelectedItem != null)
             {
                 Driver d = (Driver)DriverListBoxCustomer.SelectedItem;
+                s.LogTime(DateTime.Now.ToString("HH:mm:ss"), d.GetName(), "Booked");
                 d.ChangeAvailability("Unavailable");
                 System.Windows.MessageBox.Show("Thank you for booking a taxi with MuteMotion", "MuteMotion");
                 MainWindow mainWindow = new MainWindow(s);

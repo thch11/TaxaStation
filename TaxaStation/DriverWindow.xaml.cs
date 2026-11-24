@@ -25,7 +25,6 @@ namespace TaxaStation
         {
             s = station;
             currentUser = loginUser;
-            int i = 0;
             currentDriver = s.FindDriver(currentUser);
             InitializeComponent();
             DriverListBoxDriver.ItemsSource = s.DriverList;
@@ -41,24 +40,28 @@ namespace TaxaStation
 
         private void UnavilableButton_Click(object sender, RoutedEventArgs e)
         {
+            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Unavailable");
             currentDriver.ChangeAvailability("Unavailable");
             DriverListBoxDriver.Items.Refresh();
         }
 
         private void AvailableButton_Click(object sender, RoutedEventArgs e)
         {
+            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Available");
             currentDriver.ChangeAvailability("Available");
             DriverListBoxDriver.Items.Refresh();
         }
 
         private void OnBreakButton_Click(object sender, RoutedEventArgs e)
         {
+            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "On Break");
             currentDriver.ChangeAvailability("On Break");
             DriverListBoxDriver.Items.Refresh();
         }
 
         private void NotWorkingButton_Click(object sender, RoutedEventArgs e)
         {
+            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Not Working");
             currentDriver.ChangeAvailability("Not Working");
             DriverListBoxDriver.Items.Refresh();
         }

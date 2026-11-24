@@ -5,8 +5,8 @@
     "OwnerAccount": true
   },
   {
-    "Name": "Gurli Hansen",
-    "Password": "jesperhus",
+    "Name": "Kim Larsen",
+    "Password": "kvindemin",
     "OwnerAccount": false
   },
   {
@@ -15,18 +15,8 @@
     "OwnerAccount": false
   },
   {
-    "Name": "Kim Larsen",
-    "Password": "kvindemin",
-    "OwnerAccount": false
-  },
-  {
-    "Name": "Jesper Larsen",
-    "Password": "hund",
-    "OwnerAccount": false
-  },
-  {
-    "Name": "Spiderman",
-    "Password": "edderkop",
+    "Name": "Henrik Mortensen",
+    "Password": "leverpostej",
     "OwnerAccount": false
   }
 ]

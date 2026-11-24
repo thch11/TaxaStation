@@ -15,12 +15,22 @@ namespace TaxaStation
         private int WorkEnd { get; set; }
         [JsonInclude]
         private string Availability { get; set; } = "Available";
+        [JsonInclude]
+        public Car driversCar { get; private set; }
+        [JsonInclude]
+        public int WorkTime { get; private set; }
 
-        public Driver(string name, int workstart, int workend)
+        public Driver(string name, int workstart, int workend, Car DriversCar)
         {
             Name = name;
             WorkStart = workstart;
             WorkEnd = workend;
+            driversCar = DriversCar;
+        }
+
+        public void AddWorkTime(int minutes)
+        {
+            WorkTime = WorkTime + minutes;
         }
         public override string ToString()
         {

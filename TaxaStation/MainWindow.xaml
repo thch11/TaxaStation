@@ -28,6 +28,7 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Label x:Name="myClockLabel" Content="" HorizontalAlignment="Left" Margin="678,10,0,0" VerticalAlignment="Top" Width="112" Foreground="White" FontSize="20"/>
 
     </Grid>
 </Window>

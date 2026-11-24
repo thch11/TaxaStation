@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TaxaStation
 {
@@ -19,20 +20,27 @@ namespace TaxaStation
     public partial class MainWindow : Window
     {
         TaxiStation s;
+        private DispatcherTimer _timer;
+
 
         public MainWindow(TaxiStation station)
         {
             s = station;
             InitializeComponent();
             this.Closed += new EventHandler(MainWindow_Closed);
-        }
+            
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1),
+            };
 
-        //private void Owner_Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    OwnerWindow ownerWindow = new OwnerWindow(s);
-        //    ownerWindow.Show();
-        //    this.Close();
-        //}
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            myClockLabel.Content = DateTime.Now.ToString("HH:mm:ss");
+        }
 
         private void Customer_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -41,12 +49,6 @@ namespace TaxaStation
             this.Close();
         }
 
-        //private void Driver_Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    DriverWindow driverWindow = new DriverWindow(s);
-        //    driverWindow.Show();
-        //    this.Close();
-        //}
         void MainWindow_Closed(object? sender, EventArgs e)
         {
             s.SaveToFile();
