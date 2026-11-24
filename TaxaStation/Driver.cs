@@ -19,7 +19,7 @@ namespace TaxaStation
         public Car driversCar { get; private set; }
         [JsonInclude]
         public int WorkTime { get; private set; }
-
+        //
         public Driver(string name, int workstart, int workend, Car DriversCar)
         {
             Name = name;
