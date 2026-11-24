@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,40 +11,68 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Text.Json;
-using System.IO;
+using System.Windows.Threading;
 
 namespace TaxaStation
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
+   
     public partial class OwnerWindow : Window
     {
         TaxiStation s;
 
         User currentUser;
+        private DispatcherTimer _timer;
+
         public OwnerWindow(TaxiStation station, User loginUser)
         {
             s = station;
             currentUser = loginUser;
             InitializeComponent();
-            CarComboBox.ItemsSource = s.carList;
-            DriverListBoxOwner.ItemsSource = s.DriverList;
+            RefreshUI();
             this.Closed += new EventHandler(OwnerWindow_Closed);
+
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1),
+            };
+
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            myClockLabel.Content = DateTime.Now.ToString("HH:mm:ss");
+        }
+        private void RefreshUI()
+        {
+            CarComboBox.ItemsSource = s.GetAvailableCarShifts();
+            DriverListBoxOwner.ItemsSource = s.GetCarStatuses(DateTime.Now.Hour);
         }
 
         private void AddDriverButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DriverTextBoxInput.Text != "" && int.TryParse(WorkingHoursEndTextBoxInput.Text, out int resultEnd) && int.TryParse(WorkingHoursStartTextBoxInput.Text, out int resultStart) && DriverTextBoxInputPassword.Text != "" && CarComboBox.SelectedItem != null)
+            if (DriverTextBoxInput.Text != "" &&
+                int.TryParse(WorkingHoursEndTextBoxInput.Text, out int resultEnd) &&
+                int.TryParse(WorkingHoursStartTextBoxInput.Text, out int resultStart) &&
+                DriverTextBoxInputPassword.Text != "" &&
+                CarComboBox.SelectedItem != null)
             {
                 if (resultEnd >= 0 && resultEnd <= 24 && resultStart >= 0 && resultStart <= 24)
                 {
-                    s.AddDriver(DriverTextBoxInput.Text, Convert.ToInt32(WorkingHoursStartTextBoxInput.Text), Convert.ToInt32(WorkingHoursEndTextBoxInput.Text), (Car)CarComboBox.SelectedItem);
-                    DriverListBoxOwner.ItemsSource = s.DriverList;
-                    DriverListBoxOwner.Items.Refresh();
+                    Car selectedCar = ((CarShiftOption)CarComboBox.SelectedItem).Car;
 
-                    s.AddUser(DriverTextBoxInput.Text, DriverTextBoxInputPassword.Text);
+                    bool success = s.TryAssignDriver(DriverTextBoxInput.Text, DriverTextBoxInputPassword.Text, resultStart, resultEnd, selectedCar);
+
+                    if (success)
+                    {
+                        RefreshUI();
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Invalid shift or car is already booked for those hours (must be 0-8, 8-16, or 16-24).", "MuteMotion");
+                    }
                 }
                 else
                 {
@@ -69,14 +99,28 @@ namespace TaxaStation
 
         private void Remove_Driver_Button_Click(object sender, RoutedEventArgs e)
         {
-            s.RemoveDriver((Driver)DriverListBoxOwner.SelectedItem);
-            DriverListBoxOwner.Items.Refresh();
+            if (DriverListBoxOwner.SelectedItem != null)
+            {
+                ListBoxItem selectedItem = (ListBoxItem)DriverListBoxOwner.SelectedItem;
+
+                if (selectedItem.Tag != null)
+                {
+                    Driver selectedDriver = (Driver)selectedItem.Tag;
+                    s.RemoveDriverAndFreeCar(selectedDriver);
+                    RefreshUI();
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("This car currently has no active driver to remove.", "MuteMotion");
+                }
+            }
         }
+        
 
         private void AddCarButton_Click(object sender, RoutedEventArgs e)
         {
             s.AddCar(CarTextBoxCarBrand.Text, CarTextBoxLicensePlate.Text, Convert.ToInt32(CarTextBoxKMDriven.Text));
-            CarComboBox.Items.Refresh();
+            RefreshUI();
         }
     }
 }

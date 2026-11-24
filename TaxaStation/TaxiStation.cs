@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Windows.Controls;
 
 namespace TaxaStation
 {
@@ -69,15 +70,7 @@ namespace TaxaStation
             Directory.CreateDirectory(folderPath);
 
             string filepath = System.IO.Path.Combine(folderPath, "Save.json");
-            string json = JsonSerializer.Serialize(DriverList, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText(filepath, json);
-
-            folderPath = System.IO.Path.Combine(projectDirectory, "Login");
-
-            Directory.CreateDirectory(folderPath);
-
-            filepath = System.IO.Path.Combine(folderPath, "Login.json");
-            json = JsonSerializer.Serialize(userList, new JsonSerializerOptions { WriteIndented = true });
+            string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText(filepath, json);
         }
 
@@ -87,7 +80,7 @@ namespace TaxaStation
             int i = 0;
             while (i < DriverList.Count)
             {
-                if (DriverList[i].GetAvailability() == "Available")
+                if (DriverList[i].GetAvailability() == "Available" && (DateTime.Now.Hour < DriverList[i].WorkEnd && DateTime.Now.Hour >= DriverList[i].WorkStart))
                 {
                     newList.Add(DriverList[i]);
                 }
@@ -137,6 +130,95 @@ namespace TaxaStation
             string filepath = System.IO.Path.Combine(folderPath, "Log.txt");
             string logString = name + " " + time + " " + action + Environment.NewLine; 
             System.IO.File.AppendAllText(filepath, logString);
+        }
+
+        public List<CarShiftOption> GetAvailableCarShifts()
+        {
+            List<CarShiftOption> availableCars = new List<CarShiftOption>();
+            int i = 0;
+            while (i < carList.Count)
+            {
+                if (!carList[i].MidnightToEight)
+                {
+                    availableCars.Add(new CarShiftOption { Car = carList[i], StartHour = 0, EndHour = 8 });
+                }
+                if (!carList[i].EightToSixteen)
+                {
+                    availableCars.Add(new CarShiftOption { Car = carList[i], StartHour = 8, EndHour = 16 });
+                }
+                if (!carList[i].SixteenToMidnight)
+                {
+                    availableCars.Add(new CarShiftOption { Car = carList[i], StartHour = 16, EndHour = 24 });
+                }
+                i++;
+            }
+            return availableCars;
+        }
+
+        public List<ListBoxItem> GetCarStatuses(int currentHour)
+        {
+            List<ListBoxItem> carStatusList = new List<ListBoxItem>();
+            int i = 0;
+            while (i < carList.Count)
+            {
+                Car currentCar = carList[i];
+                string currentDriverName = "Available";
+                Driver activeDriver = null;
+
+                int j = 0;
+                while (j < DriverList.Count)
+                {
+                    Driver currentDriver = DriverList[j];
+
+                    if (currentDriver.driversCar != null && currentDriver.driversCar.LicensePlate == currentCar.LicensePlate)
+                    {
+                        if (currentHour >= currentDriver.WorkStart && currentHour < currentDriver.WorkEnd)
+                        {
+                            currentDriverName = currentDriver.Name;
+                            activeDriver = currentDriver;
+                            break;
+                        }
+                    }
+                    j++;
+                }
+                ListBoxItem item = new ListBoxItem();
+                item.Content = currentCar.CarBrand + " " + currentCar.LicensePlate + " - " + currentDriverName;
+                item.Tag = activeDriver; 
+
+                carStatusList.Add(item);
+                i++;
+            }
+            return carStatusList;
+        }
+
+        public bool TryAssignDriver(string name, string password, int startHour, int endHour, Car selectedCar)
+        {
+            if (!selectedCar.TryBookShift(startHour, endHour))
+            {
+                return false;
+            }
+
+            AddDriver(name, startHour, endHour, selectedCar);
+            AddUser(name, password);
+            return true;
+        }
+
+        public void RemoveDriverAndFreeCar(Driver driverToRemove)
+        {
+            if (driverToRemove.driversCar != null)
+            {
+                int i = 0;
+                while (i < carList.Count)
+                {
+                    if (carList[i].LicensePlate == driverToRemove.driversCar.LicensePlate)
+                    {
+                        carList[i].UnbookShift(driverToRemove.WorkStart, driverToRemove.WorkEnd);
+                        break;
+                    }
+                    i++;
+                }
+            }
+            RemoveDriver(driverToRemove);
         }
     }
 }

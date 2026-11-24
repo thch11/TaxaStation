@@ -1,38 +1,125 @@
-[
-  {
-    "Name": "Kim Larsen",
-    "WorkStart": 0,
-    "WorkEnd": 8,
-    "Availability": "On Break",
-    "driversCar": {
+{
+  "DriverList": [
+    {
+      "Name": "KIm Larsen",
+      "WorkStart": 0,
+      "WorkEnd": 8,
+      "Availability": "Unavailable",
+      "driversCar": {
+        "CarBrand": "Toyota",
+        "LicensePlate": "AB12345",
+        "KMdriven": 123671,
+        "MidnightToEight": true,
+        "EightToSixteen": false,
+        "SixteenToMidnight": false
+      },
+      "WorkTime": 0
+    },
+    {
+      "Name": "Spiderman",
+      "WorkStart": 8,
+      "WorkEnd": 16,
+      "Availability": "Available",
+      "driversCar": {
+        "CarBrand": "BMW",
+        "LicensePlate": "DE66666",
+        "KMdriven": 67123,
+        "MidnightToEight": false,
+        "EightToSixteen": true,
+        "SixteenToMidnight": false
+      },
+      "WorkTime": 0
+    },
+    {
+      "Name": "Lars Larsen",
+      "WorkStart": 16,
+      "WorkEnd": 24,
+      "Availability": "Available",
+      "driversCar": {
+        "CarBrand": "Suzuki",
+        "LicensePlate": "BC23456",
+        "KMdriven": 87211,
+        "MidnightToEight": false,
+        "EightToSixteen": false,
+        "SixteenToMidnight": true
+      },
+      "WorkTime": 0
+    },
+    {
+      "Name": "Gert Gertsen",
+      "WorkStart": 16,
+      "WorkEnd": 24,
+      "Availability": "Available",
+      "driversCar": {
+        "CarBrand": "BMW",
+        "LicensePlate": "DE66666",
+        "KMdriven": 67123,
+        "MidnightToEight": false,
+        "EightToSixteen": true,
+        "SixteenToMidnight": true
+      },
+      "WorkTime": 0
+    }
+  ],
+  "userList": [
+    {
+      "Name": "Admin",
+      "Password": "Admin",
+      "OwnerAccount": true
+    },
+    {
+      "Name": "KIm Larsen",
+      "Password": "kvindemin",
+      "OwnerAccount": false
+    },
+    {
+      "Name": "Spiderman",
+      "Password": "edderkop",
+      "OwnerAccount": false
+    },
+    {
+      "Name": "Lars Larsen",
+      "Password": "godttilbud",
+      "OwnerAccount": false
+    },
+    {
+      "Name": "Gert Gertsen",
+      "Password": "gertmand",
+      "OwnerAccount": false
+    }
+  ],
+  "carList": [
+    {
       "CarBrand": "Toyota",
       "LicensePlate": "AB12345",
-      "KMdriven": 123671
+      "KMdriven": 123671,
+      "MidnightToEight": true,
+      "EightToSixteen": false,
+      "SixteenToMidnight": false
     },
-    "WorkTime": 0
-  },
-  {
-    "Name": "Lars Larsen",
-    "WorkStart": 8,
-    "WorkEnd": 16,
-    "Availability": "Not Working",
-    "driversCar": {
-      "CarBrand": "Toyota",
-      "LicensePlate": "AB12345",
-      "KMdriven": 123671
-    },
-    "WorkTime": 0
-  },
-  {
-    "Name": "Henrik Mortensen",
-    "WorkStart": 0,
-    "WorkEnd": 8,
-    "Availability": "Unavailable",
-    "driversCar": {
+    {
       "CarBrand": "Suzuki",
       "LicensePlate": "BC23456",
-      "KMdriven": 87211
+      "KMdriven": 87211,
+      "MidnightToEight": false,
+      "EightToSixteen": false,
+      "SixteenToMidnight": true
     },
-    "WorkTime": 0
-  }
-]
+    {
+      "CarBrand": "Seat",
+      "LicensePlate": "CD12345",
+      "KMdriven": 77777,
+      "MidnightToEight": false,
+      "EightToSixteen": false,
+      "SixteenToMidnight": false
+    },
+    {
+      "CarBrand": "BMW",
+      "LicensePlate": "DE66666",
+      "KMdriven": 67123,
+      "MidnightToEight": false,
+      "EightToSixteen": true,
+      "SixteenToMidnight": true
+    }
+  ]
+}
