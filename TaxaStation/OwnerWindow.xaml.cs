@@ -63,7 +63,7 @@ namespace TaxaStation
                 {
                     Car selectedCar = ((CarShiftOption)CarComboBox.SelectedItem).Car;
 
-                    bool success = s.TryAssignDriver(DriverTextBoxInput.Text, DriverTextBoxInputPassword.Text, resultStart, resultEnd, selectedCar);
+                    bool success = s.AssignDriver(DriverTextBoxInput.Text, DriverTextBoxInputPassword.Text, resultStart, resultEnd, selectedCar);
 
                     if (success)
                     {

@@ -191,9 +191,9 @@ namespace TaxaStation
             return carStatusList;
         }
 
-        public bool TryAssignDriver(string name, string password, int startHour, int endHour, Car selectedCar)
+        public bool AssignDriver(string name, string password, int startHour, int endHour, Car selectedCar)
         {
-            if (!selectedCar.TryBookShift(startHour, endHour))
+            if (!selectedCar.BookShift(startHour, endHour))
             {
                 return false;
             }

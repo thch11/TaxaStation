@@ -32,43 +32,18 @@ namespace TaxaStation
             return CarBrand + " " + LicensePlate;
         }
 
-        public void BookMidnightToEight()
-        {
-            this.MidnightToEight = true;
-        }
-        public void BookEightToSixteen()
-        {
-            this.EightToSixteen = true;
-        }
-        public void BookSixteenToMidnight()
-        {
-            this.SixteenToMidnight = true;
-        }
-        public void UnbookMidnightToEight()
-        {
-            this.MidnightToEight = false;
-        }
-        public void UnbookEightToSixteen()
-        {
-            this.EightToSixteen = false;
-        }
-        public void UnbookSixteenToMidnight()
-        {
-            this.SixteenToMidnight = false;
-        }
-
         public bool IsShiftAvailable(int startHour, int endHour)
         {
             if (startHour == 0 && endHour == 8) 
                 return !MidnightToEight;
-            if (startHour == 8 && endHour == 16) return 
-                    !EightToSixteen;
-            if (startHour == 16 && endHour == 24) return 
-                    !SixteenToMidnight;
+            if (startHour == 8 && endHour == 16) 
+                return !EightToSixteen;
+            if (startHour == 16 && endHour == 24) 
+                return !SixteenToMidnight;
             return false;
         }
 
-        public bool TryBookShift(int startHour, int endHour)
+        public bool BookShift(int startHour, int endHour)
         {
             if (startHour == 0 && endHour == 8 && !MidnightToEight)
             {

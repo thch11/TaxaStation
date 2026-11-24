@@ -59,6 +59,21 @@
         "SixteenToMidnight": true
       },
       "WorkTime": 0
+    },
+    {
+      "Name": "Per Gammelgaard",
+      "WorkStart": 16,
+      "WorkEnd": 24,
+      "Availability": "Available",
+      "driversCar": {
+        "CarBrand": "Seat",
+        "LicensePlate": "CD12345",
+        "KMdriven": 77777,
+        "MidnightToEight": false,
+        "EightToSixteen": false,
+        "SixteenToMidnight": true
+      },
+      "WorkTime": 0
     }
   ],
   "userList": [
@@ -86,6 +101,11 @@
       "Name": "Gert Gertsen",
       "Password": "gertmand",
       "OwnerAccount": false
+    },
+    {
+      "Name": "Per Gammelgaard",
+      "Password": "gammelgaard",
+      "OwnerAccount": false
     }
   ],
   "carList": [
@@ -111,7 +131,7 @@
       "KMdriven": 77777,
       "MidnightToEight": false,
       "EightToSixteen": false,
-      "SixteenToMidnight": false
+      "SixteenToMidnight": true
     },
     {
       "CarBrand": "BMW",
