@@ -18,5 +18,15 @@
     "Name": "Kim Larsen",
     "Password": "kvindemin",
     "OwnerAccount": false
+  },
+  {
+    "Name": "Jesper Larsen",
+    "Password": "hund",
+    "OwnerAccount": false
+  },
+  {
+    "Name": "Spiderman",
+    "Password": "edderkop",
+    "OwnerAccount": false
   }
 ]

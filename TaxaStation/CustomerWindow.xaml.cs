@@ -21,22 +21,11 @@ namespace TaxaStation
     {
         TaxiStation s;
 
-        List<User> userList;
-        public CustomerWindow(TaxiStation station, List<User> uList)
+        public CustomerWindow(TaxiStation station)
         {
-            userList = uList;
             s = station;
             InitializeComponent();
-            List<Driver> AvailableDrivers = new List<Driver>();
-            int i = 0;
-            while(i < s.DriverList.Count)
-            {
-                if (s.DriverList[i].GetAvailability() == "Available")
-                {
-                    AvailableDrivers.Add(s.DriverList[i]);
-                }
-                i++;
-            }
+            List<Driver> AvailableDrivers = s.FindAvailableDrivers();
             DriverListBoxCustomer.ItemsSource = AvailableDrivers;
             this.Closed += new EventHandler(CustomerWindow_Closed);
         }
@@ -47,7 +36,7 @@ namespace TaxaStation
                 Driver d = (Driver)DriverListBoxCustomer.SelectedItem;
                 d.ChangeAvailability("Unavailable");
                 System.Windows.MessageBox.Show("Thank you for booking a taxi with MuteMotion", "MuteMotion");
-                MainWindow mainWindow = new MainWindow(s, userList);
+                MainWindow mainWindow = new MainWindow(s);
                 mainWindow.Show();
                 this.Close();
             }
@@ -59,20 +48,13 @@ namespace TaxaStation
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(s, userList);
+            MainWindow mainWindow = new MainWindow(s);
             mainWindow.Show();
             this.Close();
         }
         void CustomerWindow_Closed(object? sender, EventArgs e)
         {
-            string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-            string folderPath = System.IO.Path.Combine(projectDirectory, "JSON");
-
-            Directory.CreateDirectory(folderPath);
-
-            string filepath = System.IO.Path.Combine(folderPath, "Save.json");
-            string json = JsonSerializer.Serialize(s.DriverList, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText(filepath, json);
+            s.SaveToFile();
         }
     }
 }
