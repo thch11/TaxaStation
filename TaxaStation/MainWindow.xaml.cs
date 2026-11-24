@@ -20,10 +20,8 @@ namespace TaxaStation
     {
         TaxiStation s;
 
-        List<User> userList;
-        public MainWindow(TaxiStation station, List<User> uList)
+        public MainWindow(TaxiStation station)
         {
-            userList = uList;
             s = station;
             InitializeComponent();
             this.Closed += new EventHandler(MainWindow_Closed);
@@ -38,7 +36,7 @@ namespace TaxaStation
 
         private void Customer_Button_Click(object sender, RoutedEventArgs e)
         {
-            CustomerWindow secondWindow = new CustomerWindow(s, userList);
+            CustomerWindow secondWindow = new CustomerWindow(s);
             secondWindow.Show();
             this.Close();
         }
@@ -51,36 +49,29 @@ namespace TaxaStation
         //}
         void MainWindow_Closed(object? sender, EventArgs e)
         {
-            string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-            string folderPath = System.IO.Path.Combine(projectDirectory, "JSON");
-
-            Directory.CreateDirectory(folderPath);
-
-            string filepath = System.IO.Path.Combine(folderPath, "Save.json");
-            string json = JsonSerializer.Serialize(s.DriverList, new JsonSerializerOptions { WriteIndented = true });
-            System.IO.File.WriteAllText(filepath, json);
+            s.SaveToFile();
         }
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
             int i = 0;
-            while(userList.Count > i)
+            while(s.userList.Count > i)
             {
-                if (userList[i].GetName() == TextBoxUsername.Text && userList[i].GetPassword() == TextBoxPassword.Text && userList[i].AdminAccount() == true)
+                if (s.userList[i].GetName() == TextBoxUsername.Text && s.userList[i].GetPassword() == TextBoxPassword.Text && s.userList[i].AdminAccount() == true)
                 {
-                    OwnerWindow ownerWindow = new OwnerWindow(s, userList, userList[i]);
+                    OwnerWindow ownerWindow = new OwnerWindow(s, s.userList[i]);
                     ownerWindow.Show();
                     this.Close();
                     break;
                 }
-                else if (userList[i].GetName() == TextBoxUsername.Text && userList[i].GetPassword() == TextBoxPassword.Text)
+                else if (s.userList[i].GetName() == TextBoxUsername.Text && s.userList[i].GetPassword() == TextBoxPassword.Text)
                 {
-                    DriverWindow driverWindow = new DriverWindow(s, userList, userList[i]);
+                    DriverWindow driverWindow = new DriverWindow(s, s.userList[i]);
                     driverWindow.Show();
                     this.Close();
                     break;
                 }
                 i++;
-                if (i == userList.Count)
+                if (i == s.userList.Count)
                     System.Windows.MessageBox.Show("Invalid credentials, try again", "MuteMotion");
             }
         }

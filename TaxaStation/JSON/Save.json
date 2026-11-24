@@ -3,7 +3,7 @@
     "Name": "Gurli Hansen",
     "WorkStart": 10,
     "WorkEnd": 21,
-    "Availability": "Unavailable"
+    "Availability": "Not Working"
   },
   {
     "Name": "Lars Larsen",
@@ -15,6 +15,18 @@
     "Name": "Kim Larsen",
     "WorkStart": 4,
     "WorkEnd": 16,
+    "Availability": "Unavailable"
+  },
+  {
+    "Name": "Jesper Larsen",
+    "WorkStart": 15,
+    "WorkEnd": 23,
+    "Availability": "Available"
+  },
+  {
+    "Name": "Spiderman",
+    "WorkStart": 0,
+    "WorkEnd": 24,
     "Availability": "Unavailable"
   }
 ]
