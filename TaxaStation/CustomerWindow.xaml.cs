@@ -50,7 +50,8 @@ namespace TaxaStation
             if (DriverListBoxCustomer.SelectedItem != null)
             {
                 Driver d = (Driver)DriverListBoxCustomer.SelectedItem;
-                s.LogTime(DateTime.Now.ToString("HH:mm:ss"), d.GetName(), "Booked");
+                s.AddLog(d, DateTime.Now.ToString("HH:mm:ss"), "Booked");
+                s.AddLog(d, DateTime.Now.ToString("HH:mm:ss"), "Drive started");
                 d.ChangeAvailability("Unavailable");
                 System.Windows.MessageBox.Show("Thank you for booking a taxi with MuteMotion", "MuteMotion");
                 MainWindow mainWindow = new MainWindow(s);

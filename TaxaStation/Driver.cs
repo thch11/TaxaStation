@@ -52,5 +52,10 @@ namespace TaxaStation
             return this.Name;
         }
 
+        public void AddMinutes(int minutes)
+        {
+            WorkTime = WorkTime + minutes;
+        }
+
     }
 }

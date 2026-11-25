@@ -33,7 +33,8 @@ namespace TaxaStation
             NameLabel.Content = "Welcome " + currentDriver.Name;
             WorkHoursLabel.Content = "From: " + currentDriver.WorkStart + " to: " + currentDriver.WorkEnd;
             DriversCarLabel.Content =  currentDriver.driversCar.CarBrand + " " + currentDriver.driversCar.LicensePlate;
-            ActiveTimeLabel.Content = "Minutes: " + currentDriver.WorkTime;
+            ActiveTimeLabel.Content = "Hours: " + currentDriver.WorkTime / 60 + Environment.NewLine +  "Minutes: " + currentDriver.WorkTime % 60;
+            DriverListBoxOwner.ItemsSource = s.GetCarStatuses(DateTime.Now.Hour);
             this.Closed += new EventHandler(DriverWindow_Closed);
             _timer = new DispatcherTimer
             {
@@ -57,25 +58,41 @@ namespace TaxaStation
 
         private void UnavilableButton_Click(object sender, RoutedEventArgs e)
         {
-            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Unavailable");
-            currentDriver.ChangeAvailability("Unavailable");
+            if (!s.CheckIfDriverBooked(currentDriver))
+            {
+                s.AddLog(currentDriver, DateTime.Now.ToString("HH:mm:ss"), "Unavailable");
+                currentDriver.ChangeAvailability("Unavailable");
+            }
+            else
+                System.Windows.MessageBox.Show("You are currently booked");
         }
 
         private void AvailableButton_Click(object sender, RoutedEventArgs e)
         {
-            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Available");
-            currentDriver.ChangeAvailability("Available");
+            if (s.CheckIfDriverBooked(currentDriver))
+            {
+                s.AddMinutesToDriver(s.FindBookedLog(currentDriver), currentDriver);
+                s.AddLog(currentDriver, DateTime.Now.ToString("HH:mm:ss"), "Drive finished");
+                currentDriver.ChangeAvailability("Available");
+                ActiveTimeLabel.Content = "Hours: " + currentDriver.WorkTime / 60 + Environment.NewLine + "Minutes: " + currentDriver.WorkTime % 60;
+            }
+            else if(currentDriver.GetAvailability() == "On Break" || currentDriver.GetAvailability() == "Not Working")
+            {
+                currentDriver.ChangeAvailability("Available");
+            }
+            else    
+                System.Windows.MessageBox.Show("You are not currently booked");
         }
 
         private void OnBreakButton_Click(object sender, RoutedEventArgs e)
         {
-            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "On Break");
+            s.AddLog(currentDriver, DateTime.Now.ToString("HH:mm:ss"), "On Break");
             currentDriver.ChangeAvailability("On Break");
         }
 
         private void NotWorkingButton_Click(object sender, RoutedEventArgs e)
         {
-            s.LogTime(DateTime.Now.ToString("HH:mm:ss"), currentDriver.GetName(), "Not Working");
+            s.AddLog(currentDriver, DateTime.Now.ToString("HH:mm:ss"), "Not Working");
             currentDriver.ChangeAvailability("Not Working");
         }
         void DriverWindow_Closed(object? sender, EventArgs e)

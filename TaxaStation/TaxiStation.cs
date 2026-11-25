@@ -15,6 +15,8 @@ namespace TaxaStation
 
         public List<Car> carList { get; set; } = new List<Car>();
 
+        public List<Log> logList { get; set; } = new List<Log>();
+
         public Car AddCar(string brand, string licenseplate, int KMdriven)
         {
             Car car = AddCarToList(CreateCar(brand, licenseplate, KMdriven));
@@ -120,17 +122,17 @@ namespace TaxaStation
             userList.Remove(selectedUser);
         }
 
-        public void LogTime(string time, string name, string action)
-        {
-            string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-            string folderPath = System.IO.Path.Combine(projectDirectory, "LogFiles");
+        //public void LogTime(string time, string name, string action)
+        //{
+        //    string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
+        //    string folderPath = System.IO.Path.Combine(projectDirectory, "LogFiles");
 
-            Directory.CreateDirectory(folderPath);
+        //    Directory.CreateDirectory(folderPath);
 
-            string filepath = System.IO.Path.Combine(folderPath, "Log.txt");
-            string logString = name + " " + time + " " + action + Environment.NewLine; 
-            System.IO.File.AppendAllText(filepath, logString);
-        }
+        //    string filepath = System.IO.Path.Combine(folderPath, "Log.txt");
+        //    string logString = name + " " + time + " " + action + Environment.NewLine; 
+        //    System.IO.File.AppendAllText(filepath, logString);
+        //}
 
         public List<CarShiftOption> GetAvailableCarShifts()
         {
@@ -226,6 +228,74 @@ namespace TaxaStation
                 }
             }
             RemoveDriver(driverToRemove);
+        }
+
+        public Log AddLog(Driver driver, string time, string action)
+        {
+            Log log = AddLogToList(CreateLog(driver, time, action));
+            return log;
+        }
+        private Log CreateLog(Driver driver, string time, string action)
+        {
+            Log log = new Log(driver, time, action);
+            return log;
+        }
+        private Log AddLogToList(Log log)
+        {
+            logList.Add(log);
+            return log;
+        }
+
+        public bool CheckIfDriverBooked(Driver driver)
+        {
+            int i = 0; 
+            while(i < logList.Count)
+            {
+                if(driver.Name == logList[i].Driver.Name && logList[i].Action == "Booked")
+                {
+                    return true;
+                }
+                i++;
+            }
+            return false;
+        }
+
+        public Log FindBookedLog(Driver driver)
+        {
+            int i = 0;
+            while (i < logList.Count)
+            {
+                if (driver.Name == logList[i].Driver.Name && logList[i].Action == "Booked")
+                {
+                    return logList[i];
+                }
+                i++;
+            }
+            return null;
+        }
+        
+        public void AddMinutesToDriver(Log log, Driver driver)
+        {
+            string startString = log.Time;
+
+            DateTime start = DateTime.Parse(startString);
+            DateTime end = DateTime.Now;
+
+            if (end < start)
+            {
+                end = end.AddDays(1);
+            }
+
+            double totalMinutes = (end - start).TotalMinutes;
+
+            driver.AddMinutes(Convert.ToInt32(totalMinutes));
+
+            RemoveLogFromList(log);
+        }
+
+        public void RemoveLogFromList(Log log)
+        {
+            logList.Remove(log);
         }
     }
 }
