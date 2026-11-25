@@ -49,6 +49,8 @@ namespace TaxaStation
         {
             CarComboBox.ItemsSource = s.GetAvailableCarShifts();
             DriverListBoxOwner.ItemsSource = s.GetCarStatuses(DateTime.Now.Hour);
+            DriverListBox.ItemsSource = s.DriverList;
+            DriverListBox.Items.Refresh();
         }
 
         private void AddDriverButton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +70,10 @@ namespace TaxaStation
                     if (success)
                     {
                         RefreshUI();
+                        DriverTextBoxInput.Text = "";
+                        DriverTextBoxInputPassword.Text = "";
+                        WorkingHoursEndTextBoxInput.Text = "";
+                        WorkingHoursStartTextBoxInput.Text = "";
                     }
                     else
                     {
@@ -99,21 +105,15 @@ namespace TaxaStation
 
         private void Remove_Driver_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (DriverListBoxOwner.SelectedItem != null)
+            if (DriverListBox.SelectedItem != null)
             {
-                ListBoxItem selectedItem = (ListBoxItem)DriverListBoxOwner.SelectedItem;
-
-                if (selectedItem.Tag != null)
-                {
-                    Driver selectedDriver = (Driver)selectedItem.Tag;
-                    s.RemoveDriverAndFreeCar(selectedDriver);
-                    RefreshUI();
-                }
-                else
-                {
-                    System.Windows.MessageBox.Show("This car currently has no active driver to remove.", "MuteMotion");
-                }
+                Driver selectedDriver = (Driver)DriverListBox.SelectedItem;
+                s.RemoveDriverFromCar(selectedDriver);
+                s.RemoveDriver(selectedDriver);
+                RefreshUI();
             }
+            else
+                System.Windows.MessageBox.Show("You must select a driver from the driver list", "MuteMotion");
         }
         
 
@@ -126,6 +126,33 @@ namespace TaxaStation
             }
             else
                 System.Windows.MessageBox.Show("No empty fields allowed when adding a car", "MuteMotion");
+        }
+
+        private void RemoveCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DriverListBox.SelectedItem != null)
+            {
+                Driver selectedDriver = (Driver)DriverListBox.SelectedItem;
+                s.RemoveDriverFromCar(selectedDriver);
+                RefreshUI();
+            }
+            else
+                System.Windows.MessageBox.Show("You must select a driver from the driver list", "MuteMotion");
+        }
+
+        private void AssignCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DriverListBox.SelectedItem != null && CarComboBox.SelectedItem != null)
+            {
+                Driver selectedDriver = (Driver)DriverListBox.SelectedItem;
+                CarShiftOption shiftOption = (CarShiftOption)CarComboBox.SelectedItem;
+                bool success = s.AssignCarToDriver(selectedDriver, shiftOption);
+                {
+                    RefreshUI();
+                }
+            }
+            else
+                System.Windows.MessageBox.Show("You must select a driver from the driver list, and a car from the available car dropdown list", "MuteMotion");
         }
     }
 }

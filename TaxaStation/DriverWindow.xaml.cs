@@ -75,6 +75,7 @@ namespace TaxaStation
                 s.AddLog(currentDriver, DateTime.Now.ToString("HH:mm:ss"), "Drive finished");
                 currentDriver.ChangeAvailability("Available");
                 ActiveTimeLabel.Content = "Hours: " + currentDriver.WorkTime / 60 + Environment.NewLine + "Minutes: " + currentDriver.WorkTime % 60;
+                DriverListBoxOwner.ItemsSource = s.GetCarStatuses(DateTime.Now.Hour);
             }
             else if(currentDriver.GetAvailability() == "On Break" || currentDriver.GetAvailability() == "Not Working")
             {

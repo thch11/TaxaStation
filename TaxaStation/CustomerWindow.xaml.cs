@@ -28,7 +28,7 @@ namespace TaxaStation
         {
             s = station;
             InitializeComponent();
-            List<Driver> AvailableDrivers = s.FindAvailableDrivers();
+            List<ListBoxItem> AvailableDrivers = s.FindAvailableDrivers();
             DriverListBoxCustomer.ItemsSource = AvailableDrivers;
             this.Closed += new EventHandler(CustomerWindow_Closed);
 
@@ -49,7 +49,8 @@ namespace TaxaStation
         {
             if (DriverListBoxCustomer.SelectedItem != null)
             {
-                Driver d = (Driver)DriverListBoxCustomer.SelectedItem;
+                ListBoxItem selectedItem = (ListBoxItem)DriverListBoxCustomer.SelectedItem;
+                Driver d = (Driver)selectedItem.Tag;
                 s.AddLog(d, DateTime.Now.ToString("HH:mm:ss"), "Booked");
                 s.AddLog(d, DateTime.Now.ToString("HH:mm:ss"), "Drive started");
                 d.ChangeAvailability("Unavailable");

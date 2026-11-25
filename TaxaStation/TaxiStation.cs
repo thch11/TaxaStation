@@ -63,7 +63,20 @@ namespace TaxaStation
             return user;
 
         }
-
+        public List<ListBoxItem> ConvertDriverToListBoxItem(List<Driver> drivList)
+        {
+            int i = 0;
+            List<ListBoxItem> itemList = new List<ListBoxItem>();
+            while(i < drivList.Count)
+            {
+                ListBoxItem item = new ListBoxItem();
+                item.Content = drivList[i].Name + " | " + drivList[i].GetAvailability();
+                item.Tag = drivList[i];
+                itemList.Add(item);
+                i++;
+            }
+            return itemList;
+        }
         public void SaveToFile()
         {
             string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
@@ -76,7 +89,7 @@ namespace TaxaStation
             System.IO.File.WriteAllText(filepath, json);
         }
 
-        public List<Driver> FindAvailableDrivers()
+        public List<ListBoxItem> FindAvailableDrivers()
         {
             List<Driver> newList = new List<Driver>();
             int i = 0;
@@ -88,7 +101,8 @@ namespace TaxaStation
                 }
                 i++;
             }
-            return newList;
+            List<ListBoxItem> returnList = ConvertDriverToListBoxItem(newList);
+            return returnList;
         }
 
         public Driver FindDriver(User user)
@@ -122,18 +136,6 @@ namespace TaxaStation
             userList.Remove(selectedUser);
         }
 
-        //public void LogTime(string time, string name, string action)
-        //{
-        //    string projectDirectory = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-        //    string folderPath = System.IO.Path.Combine(projectDirectory, "LogFiles");
-
-        //    Directory.CreateDirectory(folderPath);
-
-        //    string filepath = System.IO.Path.Combine(folderPath, "Log.txt");
-        //    string logString = name + " " + time + " " + action + Environment.NewLine; 
-        //    System.IO.File.AppendAllText(filepath, logString);
-        //}
-
         public List<CarShiftOption> GetAvailableCarShifts()
         {
             List<CarShiftOption> availableCars = new List<CarShiftOption>();
@@ -156,7 +158,23 @@ namespace TaxaStation
             }
             return availableCars;
         }
-
+        public bool AssignCarToDriver(Driver driver, CarShiftOption shiftOption)
+        {
+            if (driver == null || shiftOption == null || shiftOption.Car == null)
+            {
+                return false;
+            }
+            if (driver.driversCar != null)
+            {
+                return false;
+            }
+            if (!shiftOption.Car.BookShift(shiftOption.StartHour, shiftOption.EndHour))
+            {
+                return false;
+            }
+            driver.AssignCarAndShift(shiftOption.Car, shiftOption.StartHour, shiftOption.EndHour);
+            return true;
+        }
         public List<ListBoxItem> GetCarStatuses(int currentHour)
         {
             List<ListBoxItem> carStatusList = new List<ListBoxItem>();
@@ -212,7 +230,7 @@ namespace TaxaStation
             return true;
         }
 
-        public void RemoveDriverAndFreeCar(Driver driverToRemove)
+        public void RemoveDriverFromCar(Driver driverToRemove)
         {
             if (driverToRemove.driversCar != null)
             {
@@ -222,12 +240,12 @@ namespace TaxaStation
                     if (carList[i].LicensePlate == driverToRemove.driversCar.LicensePlate)
                     {
                         carList[i].UnbookShift(driverToRemove.WorkStart, driverToRemove.WorkEnd);
+                        driverToRemove.RemoveCar();
                         break;
                     }
                     i++;
                 }
             }
-            RemoveDriver(driverToRemove);
         }
 
         public Log AddLog(Driver driver, string time, string action)

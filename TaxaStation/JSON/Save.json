@@ -88,13 +88,13 @@
         "EightToSixteen": true,
         "SixteenToMidnight": false
       },
-      "WorkTime": 0
+      "WorkTime": 63
     },
     {
       "Name": "Poul Jakobsen",
       "WorkStart": 8,
       "WorkEnd": 16,
-      "Availability": "Unavailable",
+      "Availability": "Available",
       "driversCar": {
         "CarBrand": "Toyota",
         "LicensePlate": "AB12345",
@@ -103,7 +103,7 @@
         "EightToSixteen": true,
         "SixteenToMidnight": false
       },
-      "WorkTime": 19
+      "WorkTime": 70
     },
     {
       "Name": "Gurli Hansen",
@@ -126,10 +126,25 @@
       "WorkEnd": 16,
       "Availability": "Available",
       "driversCar": {
-        "CarBrand": "Seat",
-        "LicensePlate": "CD12345",
-        "KMdriven": 77777,
+        "CarBrand": "Renault",
+        "LicensePlate": "IA71615",
+        "KMdriven": 61872,
         "MidnightToEight": false,
+        "EightToSixteen": true,
+        "SixteenToMidnight": false
+      },
+      "WorkTime": 0
+    },
+    {
+      "Name": "Katja Kaj",
+      "WorkStart": 16,
+      "WorkEnd": 24,
+      "Availability": "Available",
+      "driversCar": {
+        "CarBrand": "Toyota",
+        "LicensePlate": "AB12345",
+        "KMdriven": 123671,
+        "MidnightToEight": true,
         "EightToSixteen": true,
         "SixteenToMidnight": true
       },
@@ -186,6 +201,11 @@
       "Name": "Bente Bent",
       "Password": "mekaniker",
       "OwnerAccount": false
+    },
+    {
+      "Name": "Katja Kaj",
+      "Password": "bims",
+      "OwnerAccount": false
     }
   ],
   "carList": [
@@ -195,7 +215,7 @@
       "KMdriven": 123671,
       "MidnightToEight": true,
       "EightToSixteen": true,
-      "SixteenToMidnight": false
+      "SixteenToMidnight": true
     },
     {
       "CarBrand": "Suzuki",
@@ -210,7 +230,7 @@
       "LicensePlate": "CD12345",
       "KMdriven": 77777,
       "MidnightToEight": false,
-      "EightToSixteen": true,
+      "EightToSixteen": false,
       "SixteenToMidnight": true
     },
     {
@@ -234,7 +254,7 @@
       "LicensePlate": "IA71615",
       "KMdriven": 61872,
       "MidnightToEight": false,
-      "EightToSixteen": false,
+      "EightToSixteen": true,
       "SixteenToMidnight": false
     }
   ],
@@ -389,14 +409,14 @@
         "WorkTime": 19
       },
       "Time": "11:05:56",
-      "Action": "Booked"
+      "Action": "Drive started"
     },
     {
       "Driver": {
         "Name": "Poul Jakobsen",
         "WorkStart": 8,
         "WorkEnd": 16,
-        "Availability": "Unavailable",
+        "Availability": "Available",
         "driversCar": {
           "CarBrand": "Toyota",
           "LicensePlate": "AB12345",
@@ -405,10 +425,48 @@
           "EightToSixteen": true,
           "SixteenToMidnight": false
         },
-        "WorkTime": 19
+        "WorkTime": 70
       },
-      "Time": "11:05:56",
+      "Time": "11:56:35",
+      "Action": "Drive finished"
+    },
+    {
+      "Driver": {
+        "Name": "Kim Kurdsen",
+        "WorkStart": 8,
+        "WorkEnd": 16,
+        "Availability": "Unavailable",
+        "driversCar": {
+          "CarBrand": "Audi",
+          "LicensePlate": "KL67671",
+          "KMdriven": 67187,
+          "MidnightToEight": false,
+          "EightToSixteen": true,
+          "SixteenToMidnight": false
+        },
+        "WorkTime": 0
+      },
+      "Time": "12:26:58",
       "Action": "Drive started"
+    },
+    {
+      "Driver": {
+        "Name": "Kim Kurdsen",
+        "WorkStart": 8,
+        "WorkEnd": 16,
+        "Availability": "Available",
+        "driversCar": {
+          "CarBrand": "Audi",
+          "LicensePlate": "KL67671",
+          "KMdriven": 67187,
+          "MidnightToEight": false,
+          "EightToSixteen": true,
+          "SixteenToMidnight": false
+        },
+        "WorkTime": 63
+      },
+      "Time": "13:30:02",
+      "Action": "Drive finished"
     }
   ]
 }

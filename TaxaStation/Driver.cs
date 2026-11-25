@@ -28,13 +28,29 @@ namespace TaxaStation
             driversCar = DriversCar;
         }
 
+        public void RemoveCar()
+        {
+            this.driversCar = null;
+        }
         public void AddWorkTime(int minutes)
         {
-            WorkTime = WorkTime + minutes;
+            this.WorkTime = this.WorkTime + minutes;
         }
         public override string ToString()
         {
-            return Name + " " + " | " + Availability + " | " + WorkStart + " - " + WorkEnd;
+            if(driversCar != null)
+            {
+                return Name + " " + " | " + Availability + " | " + WorkStart + " - " + WorkEnd + " | " + driversCar.CarBrand + " - " + driversCar.LicensePlate;
+            }
+            return Name + " " + " | " + Availability + " | " + WorkStart + " - " + WorkEnd + " | " + "No car assigned";
+
+        }
+
+        public void AssignCarAndShift(Car car, int startHour, int endHour)
+        {
+            this.driversCar = car;
+            this.WorkStart = startHour;
+            this.WorkEnd = endHour;
         }
 
         public void ChangeAvailability(string a)
