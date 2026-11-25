@@ -182,7 +182,14 @@ namespace TaxaStation
                     j++;
                 }
                 ListBoxItem item = new ListBoxItem();
-                item.Content = currentCar.CarBrand + " " + currentCar.LicensePlate + " - " + currentDriverName;
+                if (activeDriver != null)
+                {
+                    item.Content = currentCar.CarBrand + " | " + currentCar.LicensePlate + " | " + currentDriverName + " | " + activeDriver.GetAvailability();
+                }
+                else
+                {
+                    item.Content = currentCar.CarBrand + " | " + currentCar.LicensePlate + " | " + currentDriverName;
+                }
                 item.Tag = activeDriver; 
 
                 carStatusList.Add(item);

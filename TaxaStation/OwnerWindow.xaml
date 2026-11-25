@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxaStation"
         mc:Ignorable="d"
-        Title="Owner" Height="380" Width="580">
+        Title="Owner" Height="380" Width="680">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Images/ProgramBackground.png" Stretch="Fill"/>
         </Grid.Background>
-        <Label Content="List of all cars:" HorizontalAlignment="Left" Margin="366,44,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Label Content="List of all car activity:" HorizontalAlignment="Left" Margin="366,44,0,0" VerticalAlignment="Top" FontSize="25"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="19,53,0,0" VerticalAlignment="Top" Width="65"/>
         <TextBox x:Name="DriverTextBoxInput" HorizontalAlignment="Left" Margin="19,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153" MaxLength="34" Background="Transparent"/>
         <TextBox x:Name="DriverTextBoxInputPassword" HorizontalAlignment="Left" Margin="19,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153" MaxLength="34" Background="Transparent"/>
